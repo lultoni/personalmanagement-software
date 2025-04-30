@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DB_API {
 
-    private static final String filename = "name_of_db.db"; // TODO add in name of file later on
+    private static final String filename = "database.db";
 
     public static Connection getConnection(String filename){
         Connection connection = null;
