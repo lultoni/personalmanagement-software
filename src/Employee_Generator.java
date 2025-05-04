@@ -13,13 +13,14 @@ public class Employee_Generator {
             "Bob", "Alice", "Charlie", "David", "Eva", "Frank", "Grace", "Heidi", "Ivan", "Judy",
             "Klaus", "Laura", "Michael", "Nora", "Oscar", "Peter", "Renate", "Stefan", "Tina", "Ulrich",
             "Viktor", "Wendy", "Max", "Anna", "Paul", "Sophie", "Leon", "Mia", "Joshua", "Dorian",
-            "Elias", "Fabian", "Nubar", "Tarik"
+            "Elias", "Fabian", "Nubar", "Tarik", "Jenny", "Christian", "Mohammad", "Lee", "Joachim", "Johannes"
     );
 
     private static final List<String> LAST_NAMES = Arrays.asList(
             "Müller", "Schmidt", "Schneider", "Fischer", "Weber", "Meyer", "Wagner", "Becker", "Schulz", "Hoffmann",
             "Schäfer", "Koch", "Bauer", "Richter", "Klein", "Wolf", "Schröder", "Neumann", "Schwarz", "Zimmermann",
-            "Braun", "Krüger", "Hartmann", "Lange", "Krause", "Lehmann", "Huber", "Maier", "Sperber", "Gläske"
+            "Braun", "Krüger", "Hartmann", "Lange", "Krause", "Lehmann", "Huber", "Maier", "Sperber", "Gläske",
+            "Peter", "Seedorf", "Beckham", "Paulus", "Neuer"
     );
 
     private static final String COMPANY_DOMAIN = "btbc.com";
@@ -58,11 +59,24 @@ public class Employee_Generator {
         return list.get(random.nextInt(list.size()));
     }
 
-    private static String generateRandomEmail(String firstName, String lastName) {
-        String emailPrefix = (firstName + "." + lastName).toLowerCase()
+    private static String generateRandomEmail(String firstName, String lastName, Set<String> existingEmails) {
+        String basePrefix = (firstName + "." + lastName).toLowerCase()
                 .replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss")
                 .replaceAll("[^a-z0-9.]", "");
-        return emailPrefix + "@" + COMPANY_DOMAIN;
+        String email = basePrefix + "@" + COMPANY_DOMAIN;
+
+        if (!existingEmails.contains(email)) {
+            return email;
+        }
+
+        int counter = 1;
+        while (true) {
+            email = basePrefix + counter + "@" + COMPANY_DOMAIN;
+            if (!existingEmails.contains(email)) {
+                return email;
+            }
+            counter++;
+        }
     }
 
     private static String generateRandomDateString(LocalDate start, LocalDate end) {
@@ -102,9 +116,9 @@ public class Employee_Generator {
     public static List<Employee> generateEmployees(int totalEmployees, Map<String, Integer> departmentManagers, int ceoId) {
         List<Employee> employees = new ArrayList<>(totalEmployees);
         Set<Integer> generatedIds = new HashSet<>();
-
-        // 1. Generiere die Manager aus der Map (falls vorhanden)
+        Set<String> generatedEmails = new HashSet<>();
         Map<String, Integer> actualManagerIds = new HashMap<>();
+
         for (Map.Entry<String, List<String>> entry : ROLES_BY_DEPARTMENT.entrySet()) {
             String department = entry.getKey();
             if (departmentManagers.containsKey(department)) {
@@ -120,9 +134,10 @@ public class Employee_Generator {
 
                     String firstName = getRandomElement(FIRST_NAMES);
                     String lastName = getRandomElement(LAST_NAMES);
-                    String email = generateRandomEmail(firstName, lastName);
+                    String email = generateRandomEmail(firstName, lastName, generatedEmails);
+                    generatedEmails.add(email);
                     String birthday = generateRandomBirthday();
-                    String startDate = generateRandomStartDate(10); // TODO maybe add a tenure based on age (birthday till today -16 years)
+                    String startDate = generateRandomStartDate(10);
                     BigDecimal salary = generateRandomSalary(managerRole);
 
                     int reportsTo = (managerRole.contains("Geschäftsführer")) ? 0 : ceoId;
@@ -143,10 +158,11 @@ public class Employee_Generator {
 
                     String firstName = "Bob";
                     String lastName = getRandomElement(LAST_NAMES);
-                    String email = generateRandomEmail(firstName, lastName);
+                    String email = generateRandomEmail(firstName, lastName, generatedEmails);
+                    generatedEmails.add(email);
                     String birthday = generateRandomBirthday();
-                    String startDate = generateRandomStartDate(10);  // TODO maybe add a tenure based on age (birthday till today -16 years)
-                    String ceoRole = "Geschäftsführer";
+                    String startDate = generateRandomStartDate(10);
+                    String ceoRole = "Geschäftsführer (CEO)";
                     String ceoDept = "Geschäftsführung";
                     BigDecimal salary = generateRandomSalary(ceoRole);
 
@@ -157,8 +173,6 @@ public class Employee_Generator {
             }
         }
 
-
-        // 2. Generiere die restlichen Mitarbeiter
         int remainingEmployees = totalEmployees - employees.size();
         for (int i = 0; i < remainingEmployees; i++) {
             int employeeId = idCounter.getAndIncrement();
@@ -171,12 +185,12 @@ public class Employee_Generator {
                     .toList());
             if (role == null) role = getRandomElement(ROLES_BY_DEPARTMENT.get("Default"));
 
-
             String firstName = getRandomElement(FIRST_NAMES);
             String lastName = getRandomElement(LAST_NAMES);
-            String email = generateRandomEmail(firstName, lastName);
+            String email = generateRandomEmail(firstName, lastName, generatedEmails);
+            generatedEmails.add(email);
             String birthday = generateRandomBirthday();
-            String startDate = generateRandomStartDate(10); // TODO maybe add a tenure based on age (birthday till today -16 years)
+            String startDate = generateRandomStartDate(10);
             BigDecimal salary = generateRandomSalary(role);
 
             int managerIdForEmployee = actualManagerIds.getOrDefault(department, 0);
@@ -205,17 +219,14 @@ public class Employee_Generator {
 
         System.out.println(Main.debug_pre_string + "Generiere " + NUM_EMPLOYEES_TO_GENERATE + " Mitarbeiter für 'Bob the Building Company'...");
 
-        // 1. Mitarbeiter generieren
         List<Employee> generatedEmployees = generateEmployees(NUM_EMPLOYEES_TO_GENERATE, departmentManagerIds, CEO_ID);
 
-        // 2. (Optional) Bestehende Mitarbeiter löschen
         if (DELETE_EXISTING_EMPLOYEES) {
             System.out.println(Main.debug_pre_string + "Lösche bestehende Mitarbeiter aus der Datenbank...");
             DB_API.deleteAllEmployees();
             System.out.println(Main.debug_pre_string + "Bestehende Mitarbeiter gelöscht.");
         }
 
-        // 3. Generierte Mitarbeiter zur Datenbank hinzufügen
         System.out.println(Main.debug_pre_string + "Füge " + generatedEmployees.size() + " generierte Mitarbeiter zur Datenbank hinzu (replace on duplicate: " + REPLACE_ON_DUPLICATE + ")...");
         DB_API.addEmployees(generatedEmployees, REPLACE_ON_DUPLICATE);
 
