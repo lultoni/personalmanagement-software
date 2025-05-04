@@ -14,7 +14,7 @@ public class DB_API {
         try{
             connection = DriverManager.getConnection("jdbc:sqlite:"+filename);
         } catch (SQLException e){
-            System.out.println(e.getMessage());
+            System.out.println(Main.debug_pre_string + e.getMessage());
         }
         return connection;
     }
@@ -27,7 +27,7 @@ public class DB_API {
              Statement statement = connection.createStatement()) { // Einfaches Statement genügt hier
 
             int rowsAffected = statement.executeUpdate(sql); // Führt den DELETE-Befehl aus
-            System.out.println(rowsAffected + " Mitarbeiter erfolgreich aus der Datenbank gelöscht.");
+            System.out.println(Main.debug_pre_string + rowsAffected + " Mitarbeiter erfolgreich aus der Datenbank gelöscht.");
 
         } catch (SQLException e) {
             System.err.println("Fehler beim Löschen aller Mitarbeiter: " + e.getMessage());
@@ -37,7 +37,7 @@ public class DB_API {
 
     public static void addEmployees(List<Employee> employeesToAdd, boolean replaceOnDuplicate) {
         if (employeesToAdd == null || employeesToAdd.isEmpty()) {
-            System.out.println("Keine Mitarbeiter zum Hinzufügen vorhanden.");
+            System.out.println(Main.debug_pre_string + "Keine Mitarbeiter zum Hinzufügen vorhanden.");
             return;
         }
 
@@ -111,7 +111,7 @@ public class DB_API {
             }
 
 
-            System.out.println("Mitarbeiter-Batch-Verarbeitung abgeschlossen. Erfolgreich: " + successfulInserts + ", Fehlgeschlagen: " + failedInserts);
+            System.out.println(Main.debug_pre_string + "Mitarbeiter-Batch-Verarbeitung abgeschlossen. Erfolgreich: " + successfulInserts + ", Fehlgeschlagen: " + failedInserts);
 
 
         } catch (BatchUpdateException bue) {

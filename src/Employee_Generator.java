@@ -59,7 +59,7 @@ public class Employee_Generator {
     }
 
     private static String generateRandomEmail(String firstName, String lastName) {
-        String emailPrefix = (firstName.substring(0, 1) + "." + lastName).toLowerCase()
+        String emailPrefix = (firstName + "." + lastName).toLowerCase()
                 .replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss")
                 .replaceAll("[^a-z0-9.]", "");
         return emailPrefix + "@" + COMPANY_DOMAIN;
@@ -101,23 +101,22 @@ public class Employee_Generator {
 
     public static List<Employee> generateEmployees(int totalEmployees, Map<String, Integer> departmentManagers, int ceoId) {
         List<Employee> employees = new ArrayList<>(totalEmployees);
-        Set<Integer> generatedIds = new HashSet<>(); // Um sicherzustellen, dass IDs eindeutig sind
+        Set<Integer> generatedIds = new HashSet<>();
 
         // 1. Generiere die Manager aus der Map (falls vorhanden)
-        Map<String, Integer> actualManagerIds = new HashMap<>(); // Speichert die tatsächlichen IDs der generierten Manager
+        Map<String, Integer> actualManagerIds = new HashMap<>();
         for (Map.Entry<String, List<String>> entry : ROLES_BY_DEPARTMENT.entrySet()) {
             String department = entry.getKey();
             if (departmentManagers.containsKey(department)) {
-                // Finde eine passende Manager-Rolle für die Abteilung
                 String managerRole = entry.getValue().stream()
                         .filter(r -> r.contains("Leiter") || r.contains("Geschäftsführer") || r.contains("Meister") || r.contains("Oberbauleiter"))
                         .findFirst()
-                        .orElse(getRandomElement(entry.getValue())); // Fallback
+                        .orElse(getRandomElement(entry.getValue()));
 
                 if (employees.size() < totalEmployees) {
                     int managerId = idCounter.getAndIncrement();
                     generatedIds.add(managerId);
-                    actualManagerIds.put(department, managerId); // Speichere die ID des erstellten Managers
+                    actualManagerIds.put(department, managerId);
 
                     String firstName = getRandomElement(FIRST_NAMES);
                     String lastName = getRandomElement(LAST_NAMES);
@@ -128,37 +127,32 @@ public class Employee_Generator {
 
                     int reportsTo = (managerRole.contains("Geschäftsführer")) ? 0 : ceoId;
 
-                    // (int id, String name, String birthday, String emailAddress,
-                    //                    BigDecimal salary, String startDate, int managerId,
-                    //                    String role, String department)
-
-                    Employee manager = new Employee(managerId, firstName, lastName, birthday, email, salary, startDate, reportsTo, managerRole, department);
+                    Employee manager = new Employee(managerId, (firstName + " " + lastName), birthday, email, salary, startDate, reportsTo, managerRole, department);
                     employees.add(manager);
                 }
             }
         }
 
-        // Sicherstellen, dass der CEO (falls noch nicht als Abteilungsleiter generiert) existiert
         if (ceoId != 0 && !generatedIds.contains(ceoId)) {
             boolean ceoExists = employees.stream().anyMatch(e -> e.getId() == ceoId);
             if (!ceoExists && employees.size() < totalEmployees) {
-                int actualCeoId = (generatedIds.contains(ceoId)) ? idCounter.getAndIncrement() : ceoId; // Nur wenn ID schon vergeben
-                if(!generatedIds.contains(actualCeoId)) { // Nur hinzufügen, wenn ID noch nicht existiert
-                    idCounter.set(Math.max(idCounter.get(), actualCeoId + 1)); // Zähler anpassen
+                int actualCeoId = (generatedIds.contains(ceoId)) ? idCounter.getAndIncrement() : ceoId;
+                if(!generatedIds.contains(actualCeoId)) {
+                    idCounter.set(Math.max(idCounter.get(), actualCeoId + 1));
                     generatedIds.add(actualCeoId);
 
-                    String firstName = "Bob"; // Chef heißt Bob ;)
+                    String firstName = "Bob";
                     String lastName = getRandomElement(LAST_NAMES);
                     String email = generateRandomEmail(firstName, lastName);
                     String birthday = generateRandomBirthday();
-                    String startDate = generateRandomStartDate(); // Könnte auch ein fester früher Wert sein
+                    String startDate = generateRandomStartDate(10);  // TODO maybe add a tenure based on age (birthday till today -16 years)
                     String ceoRole = "Geschäftsführer";
                     String ceoDept = "Geschäftsführung";
                     BigDecimal salary = generateRandomSalary(ceoRole);
 
-                    Employee ceo = new Employee(actualCeoId, firstName, lastName, birthday, email, salary, startDate, 0, ceoRole, ceoDept); // CEO hat keinen Manager
+                    Employee ceo = new Employee(actualCeoId, (firstName + " " + lastName), birthday, email, salary, startDate, 0, ceoRole, ceoDept);
                     employees.add(ceo);
-                    actualManagerIds.put(ceoDept, actualCeoId); // Füge CEO zur Manager-Map hinzu
+                    actualManagerIds.put(ceoDept, actualCeoId);
                 }
             }
         }
@@ -171,32 +165,24 @@ public class Employee_Generator {
             generatedIds.add(employeeId);
 
             String department = getRandomElement(DEPARTMENTS);
-            // Wähle Rollen aus der entsprechenden Abteilung oder Default
             List<String> possibleRoles = ROLES_BY_DEPARTMENT.getOrDefault(department, ROLES_BY_DEPARTMENT.get("Default"));
-            // Stelle sicher, dass nicht versehentlich ein weiterer Leiter generiert wird, wenn es schon einen gibt
             String role = getRandomElement(possibleRoles.stream()
-                    .filter(r -> !(r.contains("Leiter") || r.contains("Geschäftsführer"))) // Filter Manager-Rollen raus
+                    .filter(r -> !(r.contains("Leiter") || r.contains("Geschäftsführer")))
                     .toList());
-            if (role == null) { // Falls nur Manager-Rollen übrig waren, nimm eine Default-Rolle
-                role = getRandomElement(ROLES_BY_DEPARTMENT.get("Default"));
-            }
+            if (role == null) role = getRandomElement(ROLES_BY_DEPARTMENT.get("Default"));
 
 
             String firstName = getRandomElement(FIRST_NAMES);
             String lastName = getRandomElement(LAST_NAMES);
             String email = generateRandomEmail(firstName, lastName);
             String birthday = generateRandomBirthday();
-            String startDate = generateRandomStartDate();
+            String startDate = generateRandomStartDate(10); // TODO maybe add a tenure based on age (birthday till today -16 years)
             BigDecimal salary = generateRandomSalary(role);
 
-            // Finde den Manager für die Abteilung, falls einer generiert wurde, sonst 0
             int managerIdForEmployee = actualManagerIds.getOrDefault(department, 0);
-            // Stelle sicher, dass sich niemand selbst managt (sollte nicht passieren, aber sicher ist sicher)
-            if (managerIdForEmployee == employeeId) {
-                managerIdForEmployee = 0;
-            }
+            if (managerIdForEmployee == employeeId) managerIdForEmployee = 0;
 
-            Employee employee = new Employee(employeeId, firstName, lastName, birthday, email, salary, startDate, managerIdForEmployee, role, department);
+            Employee employee = new Employee(employeeId, (firstName + " " + lastName), birthday, email, salary, startDate, managerIdForEmployee, role, department);
             employees.add(employee);
         }
 
@@ -204,9 +190,9 @@ public class Employee_Generator {
     }
 
     public static void main(String[] args) {
-        final int NUM_EMPLOYEES_TO_GENERATE = 50;
-        final boolean DELETE_EXISTING_EMPLOYEES = false;
-        final boolean REPLACE_ON_DUPLICATE = true;
+        final int NUM_EMPLOYEES_TO_GENERATE = Integer.parseInt(args[0]);
+        final boolean DELETE_EXISTING_EMPLOYEES = Boolean.parseBoolean(args[1]);
+        final boolean REPLACE_ON_DUPLICATE = Boolean.parseBoolean(args[2]);
 
         final int CEO_ID = 1;
         Map<String, Integer> departmentManagerIds = new HashMap<>();
@@ -217,24 +203,23 @@ public class Employee_Generator {
         departmentManagerIds.put("Personalwesen", 6);
         departmentManagerIds.put("IT", 7);
 
-        System.out.println("Generiere " + NUM_EMPLOYEES_TO_GENERATE + " Mitarbeiter für 'Bob the Building Company'...");
+        System.out.println(Main.debug_pre_string + "Generiere " + NUM_EMPLOYEES_TO_GENERATE + " Mitarbeiter für 'Bob the Building Company'...");
 
         // 1. Mitarbeiter generieren
         List<Employee> generatedEmployees = generateEmployees(NUM_EMPLOYEES_TO_GENERATE, departmentManagerIds, CEO_ID);
 
         // 2. (Optional) Bestehende Mitarbeiter löschen
         if (DELETE_EXISTING_EMPLOYEES) {
-            System.out.println("Lösche bestehende Mitarbeiter aus der Datenbank...");
-            // Annahme: DB_API.deleteAllEmployees() existiert und funktioniert
+            System.out.println(Main.debug_pre_string + "Lösche bestehende Mitarbeiter aus der Datenbank...");
             DB_API.deleteAllEmployees();
-            System.out.println("Bestehende Mitarbeiter gelöscht.");
+            System.out.println(Main.debug_pre_string + "Bestehende Mitarbeiter gelöscht.");
         }
 
         // 3. Generierte Mitarbeiter zur Datenbank hinzufügen
-        System.out.println("Füge " + generatedEmployees.size() + " generierte Mitarbeiter zur Datenbank hinzu (replace on duplicate: " + REPLACE_ON_DUPLICATE + ")...");
+        System.out.println(Main.debug_pre_string + "Füge " + generatedEmployees.size() + " generierte Mitarbeiter zur Datenbank hinzu (replace on duplicate: " + REPLACE_ON_DUPLICATE + ")...");
         DB_API.addEmployees(generatedEmployees, REPLACE_ON_DUPLICATE);
 
-        System.out.println("Mitarbeiter erfolgreich hinzugefügt!");
+        System.out.println(Main.debug_pre_string + "Mitarbeiter erfolgreich hinzugefügt!");
     }
 
 }
