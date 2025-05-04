@@ -50,7 +50,7 @@ public class Employee_Generator {
     private static final Random random = new Random();
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE; // YYYY-MM-DD
 
-    private static final AtomicInteger idCounter = new AtomicInteger(1);
+    private static final AtomicInteger idCounter = new AtomicInteger(2);
 
     private static <T> T getRandomElement(List<T> list) {
         if (list == null || list.isEmpty()) {
@@ -119,6 +119,22 @@ public class Employee_Generator {
         Set<String> generatedEmails = new HashSet<>();
         Map<String, Integer> actualManagerIds = new HashMap<>();
 
+        generatedIds.add(ceoId);
+
+        String ceo_firstName = "Bob";
+        String ceo_lastName = getRandomElement(LAST_NAMES);
+        String ceo_email = generateRandomEmail(ceo_firstName, ceo_lastName, generatedEmails);
+        generatedEmails.add(ceo_email);
+        String ceo_birthday = generateRandomBirthday();
+        String ceo_startDate = generateRandomStartDate(10);
+        String ceo_ceoRole = "Geschäftsführer (CEO)";
+        String ceo_ceoDept = "Geschäftsführung";
+        BigDecimal ceo_salary = generateRandomSalary(ceo_ceoRole);
+
+        Employee ceo = new Employee(ceoId, (ceo_firstName + " " + ceo_lastName), ceo_birthday, ceo_email, ceo_salary, ceo_startDate, 0, ceo_ceoRole, ceo_ceoDept);
+        employees.add(ceo);
+        actualManagerIds.put(ceo_ceoDept, ceoId);
+
         for (Map.Entry<String, List<String>> entry : ROLES_BY_DEPARTMENT.entrySet()) {
             String department = entry.getKey();
             if (departmentManagers.containsKey(department)) {
@@ -144,31 +160,6 @@ public class Employee_Generator {
 
                     Employee manager = new Employee(managerId, (firstName + " " + lastName), birthday, email, salary, startDate, reportsTo, managerRole, department);
                     employees.add(manager);
-                }
-            }
-        }
-
-        if (ceoId != 0 && !generatedIds.contains(ceoId)) {
-            boolean ceoExists = employees.stream().anyMatch(e -> e.getId() == ceoId);
-            if (!ceoExists && employees.size() < totalEmployees) {
-                int actualCeoId = (generatedIds.contains(ceoId)) ? idCounter.getAndIncrement() : ceoId;
-                if(!generatedIds.contains(actualCeoId)) {
-                    idCounter.set(Math.max(idCounter.get(), actualCeoId + 1));
-                    generatedIds.add(actualCeoId);
-
-                    String firstName = "Bob";
-                    String lastName = getRandomElement(LAST_NAMES);
-                    String email = generateRandomEmail(firstName, lastName, generatedEmails);
-                    generatedEmails.add(email);
-                    String birthday = generateRandomBirthday();
-                    String startDate = generateRandomStartDate(10);
-                    String ceoRole = "Geschäftsführer (CEO)";
-                    String ceoDept = "Geschäftsführung";
-                    BigDecimal salary = generateRandomSalary(ceoRole);
-
-                    Employee ceo = new Employee(actualCeoId, (firstName + " " + lastName), birthday, email, salary, startDate, 0, ceoRole, ceoDept);
-                    employees.add(ceo);
-                    actualManagerIds.put(ceoDept, actualCeoId);
                 }
             }
         }
