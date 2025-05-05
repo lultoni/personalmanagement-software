@@ -4,6 +4,8 @@ public class Main {
 
     public static final String debug_pre_string = "db ~ ";
 
+    // TODO event system, sodass gewechselt werden kann zwischen den screens und so
+
     public static void main (String[] args) {
 
         System.out.println("\n\n");

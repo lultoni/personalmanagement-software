@@ -7,7 +7,7 @@ public class Main_Window extends JFrame {
 
     public Main_Window() {
         setTitle("personalmanagement-software");
-        setBounds(25, 25, 700, 500);
+        setBounds(25, 25, 800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         init();
         setVisible(true);
@@ -31,6 +31,8 @@ public class Main_Window extends JFrame {
 
         top_panel.add(company_name_label);
 
+        content_panel.add(new Employee_List_View(DB_API.getAllEmployees()));
+
         add(top_panel, BorderLayout.NORTH);
         add(bottom_panel, BorderLayout.SOUTH);
         add(left_panel, BorderLayout.WEST);
@@ -43,7 +45,7 @@ public class Main_Window extends JFrame {
 
         String default_font_name = "Arial";
         int default_font_style = Font.PLAIN;
-        int default_font_size = 12;
+        int default_font_size = 16;
 
         switch (style_tag) {
             case null:
@@ -57,7 +59,7 @@ public class Main_Window extends JFrame {
                 label.setFont(new Font(default_font_name, Font.BOLD, default_font_size));
                 break;
             case "italic_light":
-                label.setFont(new Font(default_font_name, Font.ITALIC, (int) (default_font_size * 0.75)));
+                label.setFont(new Font(default_font_name, Font.ITALIC, (int) (default_font_size * 0.8)));
                 label.setForeground(new Color(66, 66, 66));
                 break;
             default:
