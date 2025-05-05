@@ -9,6 +9,8 @@ public class Employee_List_View_Single extends JPanel {
     private JLabel role_label;
     private JLabel department_label;
 
+    // TODO make the employee clickable and fire a event in main, so that the singular employee view can be opened in the main window content area
+
     public Employee_List_View_Single(Employee emp, int preferredHeight) {
         // Load and scale icon
         ImageIcon rawIcon = new ImageIcon("src/img_icon/default_emp_icon.png");

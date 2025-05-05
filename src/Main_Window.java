@@ -15,14 +15,14 @@ public class Main_Window extends JFrame {
 
     private void init() {
 
-        // TODO include Employee Visualizer
-        // TODO have a bit of an outside border holding information and functionality
+        int preferredHeight = 64; // This is for the size of the left action bar icons
+        int preferredWidth = 64;
 
         setLayout(new BorderLayout());
 
         JPanel top_panel = new JPanel(new GridLayout());
         JPanel bottom_panel = new JPanel(new GridLayout());
-        JPanel left_panel = new JPanel(new GridLayout());
+        JPanel left_panel = new JPanel(new GridLayout(0, 1));
         JPanel right_panel = new JPanel(new GridLayout());
         JPanel content_panel = new JPanel(new GridLayout());
 
@@ -30,6 +30,30 @@ public class Main_Window extends JFrame {
         set_label_style("title", company_name_label);
 
         top_panel.add(company_name_label);
+
+        // TODO: homepage
+        ImageIcon rawIcon = new ImageIcon("src/img_icon/homepage_icon.png");
+        Image scaledImage = rawIcon.getImage().getScaledInstance(preferredWidth, preferredHeight, Image.SCALE_SMOOTH);
+        ImageIcon homepage_icon = new ImageIcon(scaledImage);
+        JButton homepage_button = new JButton(homepage_icon);
+
+        left_panel.add(homepage_button);
+
+        // TODO: search
+        rawIcon = new ImageIcon("src/img_icon/search_icon.png");
+        scaledImage = rawIcon.getImage().getScaledInstance(preferredWidth, preferredHeight, Image.SCALE_SMOOTH);
+        ImageIcon search_icon = new ImageIcon(scaledImage);
+        JButton search_button = new JButton(search_icon);
+
+        left_panel.add(search_button);
+
+        // TODO: hierarchy
+        rawIcon = new ImageIcon("src/img_icon/hir_icon.png");
+        scaledImage = rawIcon.getImage().getScaledInstance(preferredWidth, preferredHeight, Image.SCALE_SMOOTH);
+        ImageIcon hir_icon = new ImageIcon(scaledImage);
+        JButton hir_button = new JButton(hir_icon);
+
+        left_panel.add(hir_button);
 
         content_panel.add(new Employee_List_View(DB_API.getAllEmployees()));
 
