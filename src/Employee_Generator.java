@@ -224,4 +224,11 @@ public class Employee_Generator {
         System.out.println(Main.debug_pre_string + "Mitarbeiter erfolgreich hinzugefügt!");
     }
 
+    public static List<String> getDepartments() {
+        return DEPARTMENTS;
+    }
+
+    public static Map<String, List<String>> getRolesByDepartment() {
+        return ROLES_BY_DEPARTMENT;
+    }
 }

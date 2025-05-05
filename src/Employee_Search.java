@@ -2,7 +2,9 @@ package src;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Employee_Search extends JPanel {
@@ -10,8 +12,8 @@ public class Employee_Search extends JPanel {
     private JTextField idField;
     private JTextField nameField;
     private JTextField emailField;
-    private JTextField roleField;
-    private JTextField departmentField;
+    private JComboBox<String> departmentComboBox;
+    private JComboBox<String> roleComboBox;
     private JButton searchButton;
     private JButton clearButton;
 
@@ -66,18 +68,30 @@ public class Employee_Search extends JPanel {
         gbc.fill = GridBagConstraints.NONE; gbc.weightx = 0.0;
 
         gbc.gridx = 2; gbc.gridy = 0;
-        searchCriteriaPanel.add(new JLabel("Rolle:"), gbc);
+        searchCriteriaPanel.add(new JLabel("Abteilung:"), gbc);
         gbc.gridx = 3; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1.0;
-        roleField = new JTextField(15);
-        searchCriteriaPanel.add(roleField, gbc);
+        departmentComboBox = new JComboBox<>();
+        departmentComboBox.addItem(""); // Leere Auswahl
+        for (String dep : Employee_Generator.getDepartments()) {
+            departmentComboBox.addItem(dep);
+        }
+        searchCriteriaPanel.add(departmentComboBox, gbc);
         gbc.fill = GridBagConstraints.NONE; gbc.weightx = 0.0;
 
         gbc.gridx = 2; gbc.gridy = 1;
-        searchCriteriaPanel.add(new JLabel("Abteilung:"), gbc);
+        searchCriteriaPanel.add(new JLabel("Rolle:"), gbc);
         gbc.gridx = 3; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1.0;
-        departmentField = new JTextField(15);
-        searchCriteriaPanel.add(departmentField, gbc);
+        roleComboBox = new JComboBox<>();
+        roleComboBox.addItem(""); // Leere Auswahl
+        updateRolesByDepartment((String) departmentComboBox.getSelectedItem());
+        searchCriteriaPanel.add(roleComboBox, gbc);
         gbc.fill = GridBagConstraints.NONE; gbc.weightx = 0.0;
+
+        departmentComboBox.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                updateRolesByDepartment((String) e.getItem());
+            }
+        });
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         searchButton = new JButton("Suchen");
@@ -95,12 +109,33 @@ public class Employee_Search extends JPanel {
         clearButton.addActionListener(_ -> clearSearch());
     }
 
+    private void updateRolesByDepartment(String department) {
+        roleComboBox.removeAllItems();
+        roleComboBox.addItem(""); // Leere Auswahl
+
+        if (department == null || department.isEmpty()) {
+            // Alle Rollen aus allen Abteilungen sammeln
+            Employee_Generator.getRolesByDepartment().values().stream()
+                    .flatMap(List::stream)
+                    .distinct()
+                    .sorted()
+                    .forEach(roleComboBox::addItem);
+            return;
+        }
+
+        List<String> roles = Employee_Generator.getRolesByDepartment().getOrDefault(department,
+                Employee_Generator.getRolesByDepartment().get("Default"));
+        for (String role : roles) {
+            roleComboBox.addItem(role);
+        }
+    }
+
     private void performSearch() {
         String idStr = idField.getText().trim();
         String nameStr = nameField.getText().trim().toLowerCase();
         String emailStr = emailField.getText().trim().toLowerCase();
-        String roleStr = roleField.getText().trim().toLowerCase();
-        String departmentStr = departmentField.getText().trim().toLowerCase();
+        String roleStr = ((String) roleComboBox.getSelectedItem()).trim().toLowerCase();
+        String departmentStr = ((String) departmentComboBox.getSelectedItem()).trim().toLowerCase();
 
         ArrayList<Employee> filteredList = allEmployees.stream()
                 .filter(emp -> {
@@ -114,16 +149,16 @@ public class Employee_Search extends JPanel {
                             return false;
                         }
                     }
-                    if (!nameStr.isEmpty() && (emp.getName() == null || !emp.getName().toLowerCase().contains(nameStr))) {
+                    if (!nameStr.isEmpty() && !isSimilar(emp.getName(), nameStr)) {
                         return false;
                     }
-                    if (!emailStr.isEmpty() && (emp.getEmailAddress() == null || !emp.getEmailAddress().toLowerCase().contains(emailStr))) {
+                    if (!emailStr.isEmpty() && !isSimilar(emp.getEmailAddress(), emailStr)) {
                         return false;
                     }
-                    if (!roleStr.isEmpty() && (emp.getRole() == null || !emp.getRole().toLowerCase().contains(roleStr))) {
+                    if (!roleStr.isEmpty() && !isSimilar(emp.getRole(), roleStr)) {
                         return false;
                     }
-                    if (!departmentStr.isEmpty() && (emp.getDepartment() == null || !emp.getDepartment().toLowerCase().contains(departmentStr))) {
+                    if (!departmentStr.isEmpty() && !isSimilar(emp.getDepartment(), departmentStr)) {
                         return false;
                     }
                     return true;
@@ -137,11 +172,34 @@ public class Employee_Search extends JPanel {
         idField.setText("");
         nameField.setText("");
         emailField.setText("");
-        roleField.setText("");
-        departmentField.setText("");
-
-        // Call the event handler with the full list to reset the view
-        // Main.callEvent("search_action", new ArrayList<>(this.allEmployees));
+        departmentComboBox.setSelectedIndex(0);
+        updateRolesByDepartment((String) departmentComboBox.getSelectedItem());
+        roleComboBox.setSelectedIndex(0);
     }
 
+    private boolean isSimilar(String source, String target) {
+        if (source == null || target == null) return false;
+        source = source.toLowerCase();
+        target = target.toLowerCase();
+        int distance = levenshtein(source, target);
+        int maxLength = Math.max(source.length(), target.length());
+        return maxLength == 0 || ((1.0 - (double) distance / maxLength) >= 0.5);
+    }
+
+    private int levenshtein(String a, String b) {
+        int[] costs = new int[b.length() + 1];
+        for (int j = 0; j < costs.length; j++)
+            costs[j] = j;
+        for (int i = 1; i <= a.length(); i++) {
+            costs[0] = i;
+            int nw = i - 1;
+            for (int j = 1; j <= b.length(); j++) {
+                int cj = Math.min(1 + Math.min(costs[j], costs[j - 1]),
+                        a.charAt(i - 1) == b.charAt(j - 1) ? nw : nw + 1);
+                nw = costs[j];
+                costs[j] = cj;
+            }
+        }
+        return costs[b.length()];
+    }
 }
