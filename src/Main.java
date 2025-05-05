@@ -23,19 +23,22 @@ public class Main {
 
     }
 
-    public static void callEvent(String event_name) {
+    public static void callEvent(String event_name, Object event_args) {
         switch (event_name) {
             case null:
                 System.out.println(Main.debug_pre_string + "callEvent() ~ event_name was null ~ no event called");
                 break;
             case "homepage_button_click":
-                window.changeContentPage("homepage");
+                window.changeContentPage("homepage", event_args);
                 break;
             case "search_button_click":
-                window.changeContentPage("search");
+                window.changeContentPage("search", event_args);
                 break;
             case "hir_button_click":
-                window.changeContentPage("hierarchy");
+                window.changeContentPage("hierarchy", event_args);
+                break;
+            case "search_action":
+                window.changeContentPage("emp_list", event_args);
                 break;
             default:
                 System.out.println(Main.debug_pre_string + "callEvent() ~ Unexpected event_name: '" + event_name + "' ~ no event called");

@@ -2,6 +2,7 @@ package src;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Main_Window extends JFrame {
 
@@ -40,21 +41,19 @@ public class Main_Window extends JFrame {
 
         top_panel.add(company_name_label);
 
-        // TODO: homepage
         ImageIcon rawIcon = new ImageIcon("src/img_icon/homepage_icon.png");
         Image scaledImage = rawIcon.getImage().getScaledInstance(preferredWidth, preferredHeight, Image.SCALE_SMOOTH);
         ImageIcon homepage_icon = new ImageIcon(scaledImage);
         JButton homepage_button = new JButton(homepage_icon);
-        homepage_button.addActionListener(_ -> Main.callEvent("homepage_button_click"));
+        homepage_button.addActionListener(_ -> Main.callEvent("homepage_button_click", null));
 
         left_panel.add(homepage_button);
 
-        // TODO: search (hat eine eigene Klasse)
         rawIcon = new ImageIcon("src/img_icon/search_icon.png");
         scaledImage = rawIcon.getImage().getScaledInstance(preferredWidth, preferredHeight, Image.SCALE_SMOOTH);
         ImageIcon search_icon = new ImageIcon(scaledImage);
         JButton search_button = new JButton(search_icon);
-        search_button.addActionListener(_ -> Main.callEvent("search_button_click"));
+        search_button.addActionListener(_ -> Main.callEvent("search_button_click", null));
 
         left_panel.add(search_button);
 
@@ -63,11 +62,11 @@ public class Main_Window extends JFrame {
         scaledImage = rawIcon.getImage().getScaledInstance(preferredWidth, preferredHeight, Image.SCALE_SMOOTH);
         ImageIcon hir_icon = new ImageIcon(scaledImage);
         JButton hir_button = new JButton(hir_icon);
-        hir_button.addActionListener(_ -> Main.callEvent("hir_button_click"));
+        hir_button.addActionListener(_ -> Main.callEvent("hir_button_click", null));
 
         left_panel.add(hir_button);
 
-        changeContentPage("homepage");
+        changeContentPage("homepage", null);
 
         add(top_panel, BorderLayout.NORTH);
         add(bottom_panel, BorderLayout.SOUTH);
@@ -77,17 +76,48 @@ public class Main_Window extends JFrame {
 
     }
 
-    public void changeContentPage(String page_tag) {
+    public void changeContentPage(String page_tag, Object event_args) {
+        JPanel newPage;
+
         switch (page_tag) {
             case null:
                 System.out.println(Main.debug_pre_string + "changeContentPage() ~ page_tag was null");
+                newPage = homepage_panel;
                 break;
             case "homepage":
-                this.content_panel = homepage_panel;
+                newPage = homepage_panel;
+                System.out.println(Main.debug_pre_string + "changeContentPage() ~ 'homepage'");
+                break;
+            case "search":
+                newPage = new Employee_Search();
+                System.out.println(Main.debug_pre_string + "changeContentPage() ~ 'search'");
+                break;
+            case "emp_list":
+                if (event_args instanceof ArrayList) {
+                    newPage = new Employee_List_View((ArrayList<Employee>) event_args);
+                    System.out.println(Main.debug_pre_string + "changeContentPage() ~ 'emp_list'");
+                } else {
+                    System.out.println(Main.debug_pre_string + "changeContentPage() ~ 'emp_list' called with invalid args, showing homepage");
+                    newPage = homepage_panel;
+                }
                 break;
             default:
+                newPage = homepage_panel;
                 System.out.println(Main.debug_pre_string + "changeContentPage() ~ Unexpected page_tag: '" + page_tag + "' | moved to homepage");
                 break;
+        }
+
+        if (newPage != null) {
+            Component currentCenterComponent = ((BorderLayout)getContentPane().getLayout()).getLayoutComponent(BorderLayout.CENTER);
+            if (currentCenterComponent != null) {
+                remove(currentCenterComponent);
+            }
+
+            this.content_panel = newPage;
+            add(this.content_panel, BorderLayout.CENTER);
+
+            revalidate();
+            repaint();
         }
     }
 

@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class Homepage_View extends JPanel {
 
+    // TODO: placeholder homepage ersetzen durch was fähiges
+
     public Homepage_View() {
 
         setLayout(new GridLayout());
