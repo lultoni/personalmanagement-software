@@ -119,7 +119,7 @@ public class Employee_Generator {
         Set<String> generatedEmails = new HashSet<>();
         Map<String, Integer> actualManagerIds = new HashMap<>();
 
-        generatedIds.add(ceoId);
+        generatedIds.add(Integer.valueOf(ceoId));
 
         String ceo_firstName = "Bob";
         String ceo_lastName = getRandomElement(LAST_NAMES);
@@ -133,7 +133,7 @@ public class Employee_Generator {
 
         Employee ceo = new Employee(ceoId, (ceo_firstName + " " + ceo_lastName), ceo_birthday, ceo_email, ceo_salary, ceo_startDate, 0, ceo_ceoRole, ceo_ceoDept);
         employees.add(ceo);
-        actualManagerIds.put(ceo_ceoDept, ceoId);
+        actualManagerIds.put(ceo_ceoDept, Integer.valueOf(ceoId));
 
         for (Map.Entry<String, List<String>> entry : ROLES_BY_DEPARTMENT.entrySet()) {
             String department = entry.getKey();
@@ -145,8 +145,8 @@ public class Employee_Generator {
 
                 if (employees.size() < totalEmployees) {
                     int managerId = idCounter.getAndIncrement();
-                    generatedIds.add(managerId);
-                    actualManagerIds.put(department, managerId);
+                    generatedIds.add(Integer.valueOf(managerId));
+                    actualManagerIds.put(department, Integer.valueOf(managerId));
 
                     String firstName = getRandomElement(FIRST_NAMES);
                     String lastName = getRandomElement(LAST_NAMES);
@@ -167,7 +167,7 @@ public class Employee_Generator {
         int remainingEmployees = totalEmployees - employees.size();
         for (int i = 0; i < remainingEmployees; i++) {
             int employeeId = idCounter.getAndIncrement();
-            generatedIds.add(employeeId);
+            generatedIds.add(Integer.valueOf(employeeId));
 
             String department = getRandomElement(DEPARTMENTS);
             List<String> possibleRoles = ROLES_BY_DEPARTMENT.getOrDefault(department, ROLES_BY_DEPARTMENT.get("Default"));
@@ -184,7 +184,7 @@ public class Employee_Generator {
             String startDate = generateRandomStartDate(10);
             BigDecimal salary = generateRandomSalary(role);
 
-            int managerIdForEmployee = actualManagerIds.getOrDefault(department, 0);
+            int managerIdForEmployee = actualManagerIds.getOrDefault(department, Integer.valueOf(0));
             if (managerIdForEmployee == employeeId) managerIdForEmployee = 0;
 
             Employee employee = new Employee(employeeId, (firstName + " " + lastName), birthday, email, salary, startDate, managerIdForEmployee, role, department);
@@ -201,12 +201,12 @@ public class Employee_Generator {
 
         final int CEO_ID = 1;
         Map<String, Integer> departmentManagerIds = new HashMap<>();
-        departmentManagerIds.put("Projektleitung", 2);
-        departmentManagerIds.put("Bauleitung", 3);
-        departmentManagerIds.put("Planung & Entwurf", 4);
-        departmentManagerIds.put("Finanzen", 5);
-        departmentManagerIds.put("Personalwesen", 6);
-        departmentManagerIds.put("IT", 7);
+        departmentManagerIds.put("Projektleitung", Integer.valueOf(2));
+        departmentManagerIds.put("Bauleitung", Integer.valueOf(3));
+        departmentManagerIds.put("Planung & Entwurf", Integer.valueOf(4));
+        departmentManagerIds.put("Finanzen", Integer.valueOf(5));
+        departmentManagerIds.put("Personalwesen", Integer.valueOf(6));
+        departmentManagerIds.put("IT", Integer.valueOf(7));
 
         System.out.println(Main.debug_pre_string + "Generiere " + NUM_EMPLOYEES_TO_GENERATE + " Mitarbeiter für 'Bob the Building Company'...");
 

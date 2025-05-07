@@ -50,6 +50,13 @@ public class Employee_List_View_Single extends JPanel {
         text_panel.add(role_dept_panel);
 
         add(text_panel, BorderLayout.CENTER);
+
+        JButton employee_view_button = new JButton("More Info...");
+        employee_view_button.addActionListener(_ -> Main.callEvent("open_employee_view", emp));
+
+        add(employee_view_button, BorderLayout.EAST);
+
+        // setMaximumSize(new Dimension(1000, preferredHeight + 10)); // TODO give through dynamic width in the parameters (but on change of window size (Panel Size!!!) change it)
     }
 
     private void set_styles() {

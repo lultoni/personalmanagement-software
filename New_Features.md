@@ -6,9 +6,10 @@
     - employee, view but no edits and such
     - manager, only has some functionality if emp to edit subordinate or something like that
     - admin, allowed everything
+- Resizen vom Fenster muss korrekt gehandeld werden
+- Bekommen wir interfaces irgendwie rein um das projekt besser zu strukturieren und optimieren?
 
 ## Already Planned Ideas:
-
 
 - Table Mitarbeiter Expanden
   - Team (bringt das neue rollen?)
