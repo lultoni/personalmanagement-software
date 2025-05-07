@@ -15,4 +15,10 @@ public class Employee_View extends JPanel {
 
     }
 
+    public Employee_View(Employee employee) {
+        // TODO show all the infos
+        setLayout(new GridLayout());
+        add(new JLabel("<HTML>" + employee.toString() + "<HTML>"));
+    }
+
 }
