@@ -195,9 +195,9 @@ public class Employee_Generator {
     }
 
     public static void main(String[] args) {
-        final int NUM_EMPLOYEES_TO_GENERATE = Integer.parseInt(args[0]);
-        final boolean DELETE_EXISTING_EMPLOYEES = Boolean.parseBoolean(args[1]);
-        final boolean REPLACE_ON_DUPLICATE = Boolean.parseBoolean(args[2]);
+        final int NUM_EMPLOYEES_TO_GENERATE = args == null || args.length == 0 ? 1000 : Integer.parseInt(args[0]);
+        final boolean DELETE_EXISTING_EMPLOYEES = args == null || args.length == 0 ? Boolean.TRUE : Boolean.parseBoolean(args[1]);
+        final boolean REPLACE_ON_DUPLICATE = args == null || args.length == 0 ? Boolean.TRUE : Boolean.parseBoolean(args[2]);
 
         final int CEO_ID = 1;
         Map<String, Integer> departmentManagerIds = new HashMap<>();

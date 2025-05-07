@@ -6,6 +6,9 @@
     - employee, view but no edits and such
     - manager, only has some functionality if emp to edit subordinate or something like that
     - admin, allowed everything
+- Mitarbeiter im Programm...
+  - Erstellen
+  - Bearbeiten
 - Resizen vom Fenster muss korrekt gehandeld werden
 - Bekommen wir interfaces irgendwie rein um das projekt besser zu strukturieren und optimieren?
 
@@ -15,11 +18,6 @@
   - Team (bringt das neue rollen?)
   - Qualifikationen/Schulungen
   - (Urlaubstage Anspruch)
-- Mitarbeiter im Programm...
-  - Erstellen
-  - Bearbeiten
-  - Löschen
-  - Manager Features, also auch hier admin rights und so
 - Hierachiedarstellung
   - Baumstruktur, Zoom, Drag around
   - Jeder manager dort eine anzahl in wie viele unter ihm stehen, anklickbar zum öffnen

@@ -58,7 +58,6 @@ public class Main_Window extends JFrame {
         left_panel.add(search_button);
         when_guest_disabled.add(search_button);
 
-        // TODO: hierarchy (hat eine eigene Klasse, aber wollen wir das fr hier haben?)
         rawIcon = new ImageIcon("src/img_icon/hir_icon.png");
         scaledImage = rawIcon.getImage().getScaledInstance(preferredWidth, preferredHeight, Image.SCALE_SMOOTH);
         ImageIcon hir_icon = new ImageIcon(scaledImage);
@@ -76,7 +75,7 @@ public class Main_Window extends JFrame {
 
         left_panel.add(login_button);
 
-        changeContentPage("homepage", null);
+        changeContentPage("login_screen", null);
 
         add(top_panel, BorderLayout.NORTH);
         add(bottom_panel, BorderLayout.SOUTH);
@@ -123,7 +122,20 @@ public class Main_Window extends JFrame {
                 break;
             case "employee_view":
                 newPage = new Employee_View((Employee) event_args);
-                System.out.println(Main.debug_pre_string + "Main_Window.changeContentPage() ~ 'login_screen'");
+                System.out.println(Main.debug_pre_string + "Main_Window.changeContentPage() ~ 'employee_view'");
+                break;
+            case "hierarchy":
+                if (event_args == null) {
+                    Employee ceo = null;
+                    for (Employee employee: DB_API.getAllEmployees()) if (employee.getId() == 1) {
+                        ceo = employee;
+                        break;
+                    }
+                    event_args = ceo;
+                }
+                Employee emp = (Employee) event_args;
+                newPage = new Hierarchy_View(emp);
+                System.out.println(Main.debug_pre_string + "Main_Window.changeContentPage() ~ 'hierarchy' ~ " + emp.getId());
                 break;
             default:
                 newPage = new Homepage_View();

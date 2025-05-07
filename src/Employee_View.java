@@ -41,10 +41,20 @@ public class Employee_View extends JPanel {
         infoPanel.add(new JLabel(String.valueOf(employee.getManagerId())));
         add(infoPanel, BorderLayout.CENTER);
 
-        if (Main.getSecurity_level() < 100) return;
 
         // ==== BUTTONS (BOTTOM) ====
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
+        JButton hierarchy_view_button = new JButton("Hierarchiensicht");
+        hierarchy_view_button.addActionListener(_ -> Main.callEvent("hir_button_click", employee));
+
+        buttonPanel.add(hierarchy_view_button);
+
+        if (Main.getSecurity_level() < 100) {
+            add(buttonPanel, BorderLayout.SOUTH);
+            return;
+        }
+
         JButton editButton = new JButton("Bearbeiten");
         JButton fireButton = new JButton("Entlassen");
 
@@ -61,8 +71,9 @@ public class Employee_View extends JPanel {
                     "Bestätigung",
                     JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
-                // TODO: Mitarbeiter entfernen
+                DB_API.SQL_command(("DELETE FROM Employees WHERE emp_id=" + employee.getId()), false);
                 JOptionPane.showMessageDialog(this, "Mitarbeiter entlassen.");
+                Main.callEvent("search_button_click", null);
             }
         });
 

@@ -211,38 +211,53 @@ public class DB_API {
         return employees;
     }
 
-    public static void SQL_command(String command) {
-        try{
+    public static void SQL_command(String command, boolean printOutput) {
+        try {
             Connection connection = getConnection(filename);
             PreparedStatement statement = connection.prepareStatement(command);
-            ResultSet resultSet = statement.executeQuery();
 
-            try {
-                ResultSetMetaData metaData = resultSet.getMetaData();
-                int columnCount = metaData.getColumnCount();
-                String header = "\n| ";
-                for (int i = 1; i <= columnCount; i++) {
-                    header += metaData.getColumnName(i);
-                    if (i + 1 <= columnCount) header += " | ";
-                }
-                System.out.println(header + " |");
-                while (resultSet.next()) {
-                    String line = " - | ";
+            // Unterscheide SELECT von anderen SQL-Kommandos
+            boolean isSelect = command.trim().toLowerCase().startsWith("select");
+
+            if (isSelect) {
+                ResultSet resultSet = statement.executeQuery();
+
+                try {
+                    ResultSetMetaData metaData = resultSet.getMetaData();
+                    int columnCount = metaData.getColumnCount();
+                    String header = "\n| ";
                     for (int i = 1; i <= columnCount; i++) {
-                        line += resultSet.getObject(i);
-                        if (i + 1 <= columnCount) line += " | ";
+                        header += metaData.getColumnName(i);
+                        if (i + 1 <= columnCount) header += " | ";
                     }
-                    System.out.println(line + " |");
+                    if (printOutput) System.out.println(header + " |");
+
+                    while (resultSet.next()) {
+                        String line = " - | ";
+                        for (int i = 1; i <= columnCount; i++) {
+                            line += resultSet.getObject(i);
+                            if (i + 1 <= columnCount) line += " | ";
+                        }
+                        if (printOutput) System.out.println(line + " |");
+                    }
+
+                    if (printOutput) System.out.println();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    resultSet.close();
                 }
-                System.out.println();
-            } catch (SQLException e) {
-                e.printStackTrace();
+
+            } else {
+                int affectedRows = statement.executeUpdate();
+                if (printOutput) {
+                    System.out.println("Befehl ausgeführt. Betroffene Zeilen: " + affectedRows);
+                }
             }
 
-            resultSet.close();
             statement.close();
-        } catch (SQLException e){
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("SQL-Fehler: " + e.getMessage());
         }
     }
 
