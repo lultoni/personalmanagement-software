@@ -121,6 +121,10 @@ public class Main_Window extends JFrame {
                 newPage = new Login_Screen();
                 System.out.println(Main.debug_pre_string + "Main_Window.changeContentPage() ~ 'login_screen'");
                 break;
+            case "employee_view":
+                newPage = new Employee_View((Employee) event_args);
+                System.out.println(Main.debug_pre_string + "Main_Window.changeContentPage() ~ 'login_screen'");
+                break;
             default:
                 newPage = new Homepage_View();
                 System.out.println(Main.debug_pre_string + "Main_Window.changeContentPage() ~ Unexpected page_tag: '" + page_tag + "' | moved to homepage");

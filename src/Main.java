@@ -53,6 +53,9 @@ public class Main {
                 System.out.println(Main.debug_pre_string + "Main.callEvent() ~ changed security level from " + old_level + " to " + security_level);
                 window.onSecurityChange();
                 break;
+            case "open_employee_view":
+                window.changeContentPage("employee_view", event_args);
+                break;
             default:
                 System.out.println(Main.debug_pre_string + "Main.callEvent() ~ Unexpected event_name: '" + event_name + "' ~ no event called");
                 break;
