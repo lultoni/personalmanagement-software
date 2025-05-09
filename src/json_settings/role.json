@@ -1,0 +1,8 @@
+[
+  {
+    "id": "role-bricklayer",
+    "name": "Bricklayer",
+    "requiredQualifications": ["qual-basic-bricklaying"],
+    "relatedQualifications": ["qual-advanced-brickwork"]
+  }
+]

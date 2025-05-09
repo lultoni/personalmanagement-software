@@ -72,7 +72,7 @@ public class Employee_Search extends JPanel {
         gbc.gridx = 3; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1.0;
         departmentComboBox = new JComboBox<>();
         departmentComboBox.addItem(""); // Leere Auswahl
-        for (String dep : Employee_Generator.getDepartments()) {
+        for (String dep : DB_Employee_Generator.getDepartments()) {
             departmentComboBox.addItem(dep);
         }
         searchCriteriaPanel.add(departmentComboBox, gbc);
@@ -115,7 +115,7 @@ public class Employee_Search extends JPanel {
 
         if (department == null || department.isEmpty()) {
             // Alle Rollen aus allen Abteilungen sammeln
-            Employee_Generator.getRolesByDepartment().values().stream()
+            DB_Employee_Generator.getRolesByDepartment().values().stream()
                     .flatMap(List::stream)
                     .distinct()
                     .sorted()
@@ -123,8 +123,8 @@ public class Employee_Search extends JPanel {
             return;
         }
 
-        List<String> roles = Employee_Generator.getRolesByDepartment().getOrDefault(department,
-                Employee_Generator.getRolesByDepartment().get("Default"));
+        List<String> roles = DB_Employee_Generator.getRolesByDepartment().getOrDefault(department,
+                DB_Employee_Generator.getRolesByDepartment().get("Default"));
         for (String role : roles) {
             roleComboBox.addItem(role);
         }

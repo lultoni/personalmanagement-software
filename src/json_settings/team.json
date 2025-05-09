@@ -1,0 +1,7 @@
+[
+  {
+    "id": "team-bricklaying",
+    "name": "Bricklaying Team",
+    "requiredRoles": ["role-foreman", "role-bricklayer"]
+  }
+]

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Employee_Generator {
+public class DB_Employee_Generator {
 
     private static final List<String> FIRST_NAMES = Arrays.asList(
             "Bob", "Alice", "Charlie", "David", "Eva", "Frank", "Grace", "Heidi", "Ivan", "Judy",

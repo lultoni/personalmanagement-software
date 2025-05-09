@@ -1,0 +1,102 @@
+[
+  {
+    "id": "dept-management",
+    "name": "Geschäftsführung",
+    "subdepartments": ["dept-compliance"]
+  },
+  {
+    "id": "dept-compliance",
+    "name": "Recht & Compliance",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-finance",
+    "name": "Finanzen",
+    "subdepartments": ["dept-fibu", "dept-logistics"]
+  },
+  {
+    "id": "dept-fibu",
+    "name": "Finanzbuchhaltung",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-logistics",
+    "name": "Logistik & Geräteverwaltung",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-hr",
+    "name": "Human Resources",
+    "subdepartments": ["dept-hr-recruiting", "dept-hr-development", "dept-hr-payroll"]
+  },
+  {
+    "id": "dept-hr-recruiting",
+    "name": "Recruiting",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-hr-development",
+    "name": "Personalentwicklung",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-hr-payroll",
+    "name": "Lohnbuchhaltung",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-it",
+    "name": "IT",
+    "subdepartments": ["dept-it-infra", "dept-it-dev", "dept-it-support"]
+  },
+  {
+    "id": "dept-it-infra",
+    "name": "Infrastruktur",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-it-dev",
+    "name": "Softwareentwicklung",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-it-support",
+    "name": "Support",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-operations",
+    "name": "Bau & Außeneinsatz",
+    "subdepartments": ["dept-construction"]
+  },
+  {
+    "id": "dept-construction",
+    "name": "Bauarbeiter",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-sales",
+    "name": "Vertrieb",
+    "subdepartments": ["dept-sales-internal", "dept-sales-field", "dept-sales-key", "dept-customer"]
+  },
+  {
+    "id": "dept-sales-internal",
+    "name": "Innendienst",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-sales-field",
+    "name": "Außendienst",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-sales-key",
+    "name": "Key Account Management",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-customer",
+    "name": "Kundendienst",
+    "subdepartments": []
+  }
+]

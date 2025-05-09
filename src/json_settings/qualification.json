@@ -1,0 +1,14 @@
+[
+  {
+    "id": "qual-basic-bricklaying",
+    "name": "Basic Bricklaying",
+    "requirements": [],
+    "followups": ["qual-advanced-brickwork"]
+  },
+  {
+    "id": "qual-advanced-brickwork",
+    "name": "Advanced Brickwork",
+    "requirements": ["qual-basic-bricklaying"],
+    "followups": []
+  }
+]
