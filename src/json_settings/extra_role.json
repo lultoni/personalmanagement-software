@@ -1,0 +1,14 @@
+[
+  {
+    "department-id": "it",
+    "id": "",
+    "name": "Bricklayer",
+    "requiredQualifications": ["qual-basic-bricklaying"]
+  }
+  {
+    "subdepartment-id" : "it-dev"
+  }
+  {
+    "ceo": ""
+  }
+]

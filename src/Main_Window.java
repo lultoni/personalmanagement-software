@@ -41,6 +41,11 @@ public class Main_Window extends JFrame {
 
         top_panel.add(company_name_label);
 
+        JButton return_button = new JButton("Return");
+        return_button.addActionListener(_ -> {System.out.println("Ich bin der Return Button!");});
+
+        left_panel.add(return_button);
+
         ImageIcon rawIcon = new ImageIcon("src/img_icon/homepage_icon.png");
         Image scaledImage = rawIcon.getImage().getScaledInstance(preferredWidth, preferredHeight, Image.SCALE_SMOOTH);
         ImageIcon homepage_icon = new ImageIcon(scaledImage);

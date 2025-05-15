@@ -1,7 +1,164 @@
 [
   {
-    "id": "team-bricklaying",
-    "name": "Bricklaying Team",
-    "requiredRoles": ["role-foreman", "role-bricklayer"]
+    "subdepartmentId": "dept-compliance",
+    "teams": [
+      { "id": "team-legal-compliance", "name": "Legal Compliance Team" },
+      { "id": "team-data-protection", "name": "Data Protection Team" },
+      { "id": "team-regulatory-audit", "name": "Regulatory Audit Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-strategy",
+    "teams": [
+      { "id": "team-corporate-strategy", "name": "Corporate Strategy Team" },
+      { "id": "team-market-analysis", "name": "Market Analysis Team" },
+      { "id": "team-innovation", "name": "Innovation & Growth Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-internal-audit",
+    "teams": [
+      { "id": "team-financial-audit", "name": "Financial Audit Team" },
+      { "id": "team-process-audit", "name": "Process Audit Team" },
+      { "id": "team-risk-assessment", "name": "Risk Assessment Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-fibu",
+    "teams": [
+      { "id": "team-general-ledger", "name": "General Ledger Team" },
+      { "id": "team-accounts-payable", "name": "Accounts Payable Team" },
+      { "id": "team-accounts-receivable", "name": "Accounts Receivable Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-logistics",
+    "teams": [
+      { "id": "team-internal-logistics", "name": "Internal Logistics Team" },
+      { "id": "team-equipment-dispatch", "name": "Equipment Dispatch Team" },
+      { "id": "team-logistics-planning", "name": "Logistics Planning Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-controlling",
+    "teams": [
+      { "id": "team-cost-controlling", "name": "Cost Controlling Team" },
+      { "id": "team-budget-analysis", "name": "Budget Analysis Team" },
+      { "id": "team-kpi-monitoring", "name": "KPI Monitoring Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-hr-recruiting",
+    "teams": [
+      { "id": "team-candidate-sourcing", "name": "Candidate Sourcing Team" },
+      { "id": "team-application-management", "name": "Application Management Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-hr-development",
+    "teams": [
+      { "id": "team-training-programs", "name": "Training Programs Team" },
+      { "id": "team-leadership-development", "name": "Leadership Development Team" },
+      { "id": "team-performance-evaluation", "name": "Performance Evaluation Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-hr-payroll",
+    "teams": [
+      { "id": "team-salary-processing", "name": "Salary Processing Team" },
+      { "id": "team-tax-compliance", "name": "Payroll Tax Compliance Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-hr-admin",
+    "teams": [
+      { "id": "team-hr-documentation", "name": "HR Documentation Team" },
+      { "id": "team-onboarding", "name": "Onboarding Team" },
+      { "id": "team-employee-data", "name": "Employee Data Management Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-it-infrastructure",
+    "teams": [
+      { "id": "team-network-admin", "name": "Network Administration Team" },
+      { "id": "team-server-ops", "name": "Server Operations Team" },
+      { "id": "team-cloud-services", "name": "Cloud Services Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-it-dev",
+    "teams": [
+      { "id": "team-frontend", "name": "Frontend Development Team" },
+      { "id": "team-backend", "name": "Backend Development Team" },
+      { "id": "team-fullstack", "name": "Fullstack Development Team" },
+      { "id": "team-devops", "name": "DevOps Engineering Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-it-support",
+    "teams": [
+      { "id": "team-helpdesk", "name": "IT Helpdesk Team" },
+      { "id": "team-client-support", "name": "Client Support Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-it-security",
+    "teams": [
+      { "id": "team-network-security", "name": "Network Security Team" },
+      { "id": "team-it-compliance", "name": "IT Compliance Team" },
+      { "id": "team-cyber-defense", "name": "Cyber Defense Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-construction",
+    "teams": [
+      { "id": "team-masonry", "name": "Masonry Team" },
+      { "id": "team-carpentry", "name": "Carpentry Team" },
+      { "id": "team-concrete", "name": "Concrete Works Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-site-management",
+    "teams": [
+      { "id": "team-site-planning", "name": "Site Planning Team" },
+      { "id": "team-quality-supervision", "name": "Quality Supervision Team" },
+      { "id": "team-site-logistics", "name": "Site Logistics Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-sales-internal",
+    "teams": [
+      { "id": "team-sales-admin", "name": "Sales Administration Team" },
+      { "id": "team-order-processing", "name": "Order Processing Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-sales-field",
+    "teams": [
+      { "id": "team-regional-sales", "name": "Regional Sales Team" },
+      { "id": "team-product-promotion", "name": "Product Promotion Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-sales-key",
+    "teams": [
+      { "id": "team-key-account-east", "name": "Key Account Team East" },
+      { "id": "team-key-account-west", "name": "Key Account Team West" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-customer",
+    "teams": [
+      { "id": "team-customer-service", "name": "Customer Service Team" },
+      { "id": "team-client-complaints", "name": "Client Complaints Team" }
+    ]
+  },
+  {
+    "subdepartmentId": "dept-sales-support",
+    "teams": [
+      { "id": "team-material-prep", "name": "Sales Material Preparation Team" },
+      { "id": "team-pre-sales", "name": "Pre-Sales Support Team" },
+      { "id": "team-bid-management", "name": "Bid Management Team" }
+    ]
   }
 ]
