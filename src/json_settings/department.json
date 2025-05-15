@@ -2,7 +2,7 @@
   {
     "id": "dept-management",
     "name": "Geschäftsführung",
-    "subdepartments": ["dept-compliance"]
+    "subdepartments": ["dept-compliance", "dept-strategy", "dept-internal-audit"]
   },
   {
     "id": "dept-compliance",
@@ -10,9 +10,19 @@
     "subdepartments": []
   },
   {
+    "id": "dept-strategy",
+    "name": "Unternehmensstrategie",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-internal-audit",
+    "name": "Interne Revision",
+    "subdepartments": []
+  },
+  {
     "id": "dept-finance",
     "name": "Finanzen",
-    "subdepartments": ["dept-fibu", "dept-logistics"]
+    "subdepartments": ["dept-fibu", "dept-logistics", "dept-controlling"]
   },
   {
     "id": "dept-fibu",
@@ -25,9 +35,14 @@
     "subdepartments": []
   },
   {
+    "id": "dept-controlling",
+    "name": "Controlling",
+    "subdepartments": []
+  },
+  {
     "id": "dept-hr",
     "name": "Human Resources",
-    "subdepartments": ["dept-hr-recruiting", "dept-hr-development", "dept-hr-payroll"]
+    "subdepartments": ["dept-hr-recruiting", "dept-hr-development", "dept-hr-payroll", "dept-hr-admin"]
   },
   {
     "id": "dept-hr-recruiting",
@@ -45,9 +60,14 @@
     "subdepartments": []
   },
   {
+    "id": "dept-hr-admin",
+    "name": "HR-Administration",
+    "subdepartments": []
+  },
+  {
     "id": "dept-it",
     "name": "IT",
-    "subdepartments": ["dept-it-infra", "dept-it-dev", "dept-it-support"]
+    "subdepartments": ["dept-it-infrastructure", "dept-it-dev", "dept-it-support", "dept-it-security"]
   },
   {
     "id": "dept-it-infra",
@@ -61,13 +81,18 @@
   },
   {
     "id": "dept-it-support",
-    "name": "Support",
+    "name": "Softwareentwicklung",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-it-security",
+    "name": "Softwareentwicklung",
     "subdepartments": []
   },
   {
     "id": "dept-operations",
     "name": "Bau & Außeneinsatz",
-    "subdepartments": ["dept-construction"]
+    "subdepartments": ["dept-construction", "dept-site-management"]
   },
   {
     "id": "dept-construction",
@@ -75,9 +100,14 @@
     "subdepartments": []
   },
   {
+    "id": "dept-site-management",
+    "name": "Baustellenleitung",
+    "subdepartments": []
+  },
+  {
     "id": "dept-sales",
     "name": "Vertrieb",
-    "subdepartments": ["dept-sales-internal", "dept-sales-field", "dept-sales-key", "dept-customer"]
+    "subdepartments": ["dept-sales-internal", "dept-sales-field", "dept-sales-key", "dept-customer", "dept-sales-support"]
   },
   {
     "id": "dept-sales-internal",
@@ -97,6 +127,11 @@
   {
     "id": "dept-customer",
     "name": "Kundendienst",
+    "subdepartments": []
+  },
+  {
+    "id": "dept-sales-support",
+    "name": "Vertriebsunterstützung",
     "subdepartments": []
   }
 ]
