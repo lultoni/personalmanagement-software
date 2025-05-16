@@ -1,164 +1,344 @@
 [
   {
-    "subdepartmentId": "dept-compliance",
-    "teams": [
-      { "id": "team-legal-compliance", "name": "Legal Compliance Team" },
-      { "id": "team-data-protection", "name": "Data Protection Team" },
-      { "id": "team-regulatory-audit", "name": "Regulatory Audit Team" }
-    ]
+    "team-id": "team-legal-compliance",
+    "name": "Legal Compliance Team",
+    "departmentId": "dept-compliance",
+    "roles": ["role-legal-compliance-lead", "role-legal-compliance-specialist", "role-compliance-analyst", "role-compliance-coordinator"]
   },
   {
-    "subdepartmentId": "dept-strategy",
-    "teams": [
-      { "id": "team-corporate-strategy", "name": "Corporate Strategy Team" },
-      { "id": "team-market-analysis", "name": "Market Analysis Team" },
-      { "id": "team-innovation", "name": "Innovation & Growth Team" }
-    ]
+    "team-id": "team-data-protection",
+    "name": "Data Protection Team",
+    "departmentId": "dept-compliance",
+    "roles": ["role-data-protection-lead", "role-data-protection-specialist", "role-data-security-analyst", "role-privacy-compliance-officer"]
   },
   {
-    "subdepartmentId": "dept-internal-audit",
-    "teams": [
-      { "id": "team-financial-audit", "name": "Financial Audit Team" },
-      { "id": "team-process-audit", "name": "Process Audit Team" },
-      { "id": "team-risk-assessment", "name": "Risk Assessment Team" }
-    ]
+    "team-id": "team-regulatory-audit",
+    "name": "Regulatory Audit Team",
+    "departmentId": "dept-compliance",
+    "roles": ["role-regulatory-audit-lead", "role-regulatory-auditor", "role-compliance-reviewer", "role-audit-documentation-specialist"]
   },
   {
-    "subdepartmentId": "dept-fibu",
-    "teams": [
-      { "id": "team-general-ledger", "name": "General Ledger Team" },
-      { "id": "team-accounts-payable", "name": "Accounts Payable Team" },
-      { "id": "team-accounts-receivable", "name": "Accounts Receivable Team" }
-    ]
+    "team-id": "team-corporate-strategy",
+    "name": "Corporate Strategy Team",
+    "departmentId": "dept-strategy",
+    "roles": ["role-corporate-strategy-lead", "role-strategy-consultant", "role-business-analyst", "role-portfolio-manager"]
   },
   {
-    "subdepartmentId": "dept-logistics",
-    "teams": [
-      { "id": "team-internal-logistics", "name": "Internal Logistics Team" },
-      { "id": "team-equipment-dispatch", "name": "Equipment Dispatch Team" },
-      { "id": "team-logistics-planning", "name": "Logistics Planning Team" }
-    ]
+    "team-id": "team-market-analysis",
+    "name": "Market Analysis Team",
+    "departmentId": "dept-strategy",
+    "roles": ["role-market-analysis-lead", "role-market-researcher", "role-competitive-analyst", "role-data-scientist"]
   },
   {
-    "subdepartmentId": "dept-controlling",
-    "teams": [
-      { "id": "team-cost-controlling", "name": "Cost Controlling Team" },
-      { "id": "team-budget-analysis", "name": "Budget Analysis Team" },
-      { "id": "team-kpi-monitoring", "name": "KPI Monitoring Team" }
-    ]
+    "team-id": "team-innovation",
+    "name": "Innovation & Growth Team",
+    "departmentId": "dept-strategy",
+    "roles": ["role-innovation-lead", "role-product-innovator", "role-growth-strategist", "role-innovation-researcher"]
   },
   {
-    "subdepartmentId": "dept-hr-recruiting",
-    "teams": [
-      { "id": "team-candidate-sourcing", "name": "Candidate Sourcing Team" },
-      { "id": "team-application-management", "name": "Application Management Team" }
-    ]
+    "team-id": "team-financial-audit",
+    "name": "Financial Audit Team",
+    "departmentId": "dept-internal-audit",
+    "roles": ["role-financial-audit-lead", "role-senior-auditor", "role-junior-auditor", "role-audit-data-analyst"]
   },
   {
-    "subdepartmentId": "dept-hr-development",
-    "teams": [
-      { "id": "team-training-programs", "name": "Training Programs Team" },
-      { "id": "team-leadership-development", "name": "Leadership Development Team" },
-      { "id": "team-performance-evaluation", "name": "Performance Evaluation Team" }
-    ]
+    "team-id": "team-process-audit",
+    "name": "Process Audit Team",
+    "departmentId": "dept-internal-audit",
+    "roles": ["role-process-audit-lead", "role-process-auditor", "role-efficiency-analyst", "role-workflow-specialist"]
   },
   {
-    "subdepartmentId": "dept-hr-payroll",
-    "teams": [
-      { "id": "team-salary-processing", "name": "Salary Processing Team" },
-      { "id": "team-tax-compliance", "name": "Payroll Tax Compliance Team" }
-    ]
+    "team-id": "team-risk-assessment",
+    "name": "Risk Assessment Team",
+    "departmentId": "dept-internal-audit",
+    "roles": ["role-risk-assessment-lead", "role-risk-analyst", "role-compliance-risk-specialist", "role-risk-modeling-expert"]
   },
   {
-    "subdepartmentId": "dept-hr-admin",
-    "teams": [
-      { "id": "team-hr-documentation", "name": "HR Documentation Team" },
-      { "id": "team-onboarding", "name": "Onboarding Team" },
-      { "id": "team-employee-data", "name": "Employee Data Management Team" }
-    ]
+    "team-id": "team-general-ledger",
+    "name": "General Ledger Team",
+    "departmentId": "dept-fibu",
+    "roles": ["role-general-ledger-lead", "role-senior-accountant", "role-junior-accountant", "role-reconciliation-specialist"]
   },
   {
-    "subdepartmentId": "dept-it-infrastructure",
-    "teams": [
-      { "id": "team-network-admin", "name": "Network Administration Team" },
-      { "id": "team-server-ops", "name": "Server Operations Team" },
-      { "id": "team-cloud-services", "name": "Cloud Services Team" }
-    ]
+    "team-id": "team-accounts-payable",
+    "name": "Accounts Payable Team",
+    "departmentId": "dept-fibu",
+    "roles": ["role-accounts-payable-lead", "role-ap-specialist", "role-vendor-coordinator", "role-payment-processor"]
   },
   {
-    "subdepartmentId": "dept-it-dev",
-    "teams": [
-      { "id": "team-frontend", "name": "Frontend Development Team" },
-      { "id": "team-backend", "name": "Backend Development Team" },
-      { "id": "team-fullstack", "name": "Fullstack Development Team" },
-      { "id": "team-devops", "name": "DevOps Engineering Team" }
-    ]
+    "team-id": "team-accounts-receivable",
+    "name": "Accounts Receivable Team",
+    "departmentId": "dept-fibu",
+    "roles": ["role-accounts-receivable-lead", "role-ar-specialist", "role-credit-controller", "role-billing-coordinator"]
   },
   {
-    "subdepartmentId": "dept-it-support",
-    "teams": [
-      { "id": "team-helpdesk", "name": "IT Helpdesk Team" },
-      { "id": "team-client-support", "name": "Client Support Team" }
-    ]
+    "team-id": "team-internal-logistics",
+    "name": "Internal Logistics Team",
+    "departmentId": "dept-logistics",
+    "roles": ["role-internal-logistics-lead", "role-warehouse-coordinator", "role-material-handler", "role-inventory-specialist"]
   },
   {
-    "subdepartmentId": "dept-it-security",
-    "teams": [
-      { "id": "team-network-security", "name": "Network Security Team" },
-      { "id": "team-it-compliance", "name": "IT Compliance Team" },
-      { "id": "team-cyber-defense", "name": "Cyber Defense Team" }
-    ]
+    "team-id": "team-equipment-dispatch",
+    "name": "Equipment Dispatch Team",
+    "departmentId": "dept-logistics",
+    "roles": ["role-equipment-dispatch-lead", "role-dispatcher", "role-equipment-tracker", "role-fleet-coordinator"]
   },
   {
-    "subdepartmentId": "dept-construction",
-    "teams": [
-      { "id": "team-masonry", "name": "Masonry Team" },
-      { "id": "team-carpentry", "name": "Carpentry Team" },
-      { "id": "team-concrete", "name": "Concrete Works Team" }
-    ]
+    "team-id": "team-logistics-planning",
+    "name": "Logistics Planning Team",
+    "departmentId": "dept-logistics",
+    "roles": ["role-logistics-planning-lead", "role-logistics-analyst", "role-route-planner", "role-capacity-planner"]
   },
   {
-    "subdepartmentId": "dept-site-management",
-    "teams": [
-      { "id": "team-site-planning", "name": "Site Planning Team" },
-      { "id": "team-quality-supervision", "name": "Quality Supervision Team" },
-      { "id": "team-site-logistics", "name": "Site Logistics Team" }
-    ]
+    "team-id": "team-cost-controlling",
+    "name": "Cost Controlling Team",
+    "departmentId": "dept-controlling",
+    "roles": ["role-cost-controlling-lead", "role-cost-analyst", "role-variance-analyst", "role-cost-reporting-specialist"]
   },
   {
-    "subdepartmentId": "dept-sales-internal",
-    "teams": [
-      { "id": "team-sales-admin", "name": "Sales Administration Team" },
-      { "id": "team-order-processing", "name": "Order Processing Team" }
-    ]
+    "team-id": "team-budget-analysis",
+    "name": "Budget Analysis Team",
+    "departmentId": "dept-controlling",
+    "roles": ["role-budget-analysis-lead", "role-budget-analyst", "role-forecast-specialist", "role-financial-planner"]
   },
   {
-    "subdepartmentId": "dept-sales-field",
-    "teams": [
-      { "id": "team-regional-sales", "name": "Regional Sales Team" },
-      { "id": "team-product-promotion", "name": "Product Promotion Team" }
-    ]
+    "team-id": "team-kpi-monitoring",
+    "name": "KPI Monitoring Team",
+    "departmentId": "dept-controlling",
+    "roles": ["role-kpi-monitoring-lead", "role-kpi-analyst", "role-performance-specialist", "role-reporting-expert"]
   },
   {
-    "subdepartmentId": "dept-sales-key",
-    "teams": [
-      { "id": "team-key-account-east", "name": "Key Account Team East" },
-      { "id": "team-key-account-west", "name": "Key Account Team West" }
-    ]
+    "team-id": "team-candidate-sourcing",
+    "name": "Candidate Sourcing Team",
+    "departmentId": "dept-hr-recruiting",
+    "roles": ["role-candidate-sourcing-lead", "role-talent-scout", "role-social-media-recruiter", "role-search-specialist"]
   },
   {
-    "subdepartmentId": "dept-customer",
-    "teams": [
-      { "id": "team-customer-service", "name": "Customer Service Team" },
-      { "id": "team-client-complaints", "name": "Client Complaints Team" }
-    ]
+    "team-id": "team-application-management",
+    "name": "Application Management Team",
+    "departmentId": "dept-hr-recruiting",
+    "roles": ["role-application-management-lead", "role-application-processor", "role-interview-coordinator", "role-candidate-experience-specialist"]
   },
   {
-    "subdepartmentId": "dept-sales-support",
-    "teams": [
-      { "id": "team-material-prep", "name": "Sales Material Preparation Team" },
-      { "id": "team-pre-sales", "name": "Pre-Sales Support Team" },
-      { "id": "team-bid-management", "name": "Bid Management Team" }
-    ]
+    "team-id": "team-training-programs",
+    "name": "Training Programs Team",
+    "departmentId": "dept-hr-development",
+    "roles": ["role-training-programs-lead", "role-training-developer", "role-training-coordinator", "role-training-evaluator"]
+  },
+  {
+    "team-id": "team-leadership-development",
+    "name": "Leadership Development Team",
+    "departmentId": "dept-hr-development",
+    "roles": ["role-leadership-development-lead", "role-leadership-coach", "role-talent-developer", "role-management-trainer"]
+  },
+  {
+    "team-id": "team-performance-evaluation",
+    "name": "Performance Evaluation Team",
+    "departmentId": "dept-hr-development",
+    "roles": ["role-performance-evaluation-lead", "role-evaluation-specialist", "role-feedback-facilitator", "role-performance-analyst"]
+  },
+  {
+    "team-id": "team-salary-processing",
+    "name": "Salary Processing Team",
+    "departmentId": "dept-hr-payroll",
+    "roles": ["role-salary-processing-lead", "role-payroll-specialist", "role-benefits-administrator", "role-compensation-analyst"]
+  },
+  {
+    "team-id": "team-tax-compliance",
+    "name": "Payroll Tax Compliance Team",
+    "departmentId": "dept-hr-payroll",
+    "roles": ["role-tax-compliance-lead", "role-tax-specialist", "role-tax-filing-coordinator", "role-tax-auditor"]
+  },
+  {
+    "team-id": "team-hr-documentation",
+    "name": "HR Documentation Team",
+    "departmentId": "dept-hr-admin",
+    "roles": ["role-hr-documentation-lead", "role-document-specialist", "role-archive-coordinator", "role-compliance-documenter"]
+  },
+  {
+    "team-id": "team-onboarding",
+    "name": "Onboarding Team",
+    "departmentId": "dept-hr-admin",
+    "roles": ["role-onboarding-lead", "role-onboarding-coordinator", "role-orientation-specialist", "role-integration-facilitator"]
+  },
+  {
+    "team-id": "team-employee-data",
+    "name": "Employee Data Management Team",
+    "departmentId": "dept-hr-admin",
+    "roles": ["role-employee-data-lead", "role-hris-specialist", "role-data-entry-coordinator", "role-hr-reporting-analyst"]
+  },
+  {
+    "team-id": "team-network-admin",
+    "name": "Network Administration Team",
+    "departmentId": "dept-it-infrastructure",
+    "roles": ["role-network-admin-lead", "role-network-engineer", "role-network-technician", "role-connectivity-specialist"]
+  },
+  {
+    "team-id": "team-server-ops",
+    "name": "Server Operations Team",
+    "departmentId": "dept-it-infrastructure",
+    "roles": ["role-server-ops-lead", "role-systems-administrator", "role-storage-administrator","role-virtualization-specialist"]
+  },
+  {
+    "team-id": "team-cloud-services",
+    "name": "Cloud Services Team",
+    "departmentId": "dept-it-infrastructure",
+    "roles": ["role-cloud-services-lead","role-cloud-architect","role-cloud-administrator","role-cloud-security-specialist"]
+  },
+  {
+    "team-id": "team-frontend",
+    "name": "Frontend Development Team",
+    "departmentId": "dept-it-dev",
+    "roles": ["role-frontend-lead","role-senior-frontend","role-ui-developer","role-frontend-tester"]
+  },
+  {
+    "team-id": "team-backend",
+    "name": "Backend Development Team",
+    "departmentId": "dept-it-dev",
+    "roles": ["role-backend-lead","role-senior-backend","role-database-developer","role-backend-tester"]
+  },
+  {
+    "team-id": "team-fullstack",
+    "name": "Fullstack Development Team",
+    "departmentId": "dept-it-dev",
+    "roles": ["role-fullstack-lead","role-senior-fullstack","role-fullstack-developer","role-integration-specialist"]
+  },
+  {
+    "team-id": "team-devops",
+    "name": "DevOps Engineering Team",
+    "departmentId": "dept-it-dev",
+    "roles": ["role-devops-lead","role-devops-engineer","role-ci-cd-specialist","role-platform-engineer"]
+  },
+  {
+    "team-id": "team-helpdesk",
+    "name": "IT Helpdesk Team",
+    "departmentId": "dept-it-support",
+    "roles": ["role-helpdesk-lead","role-senior-support","role-helpdesk-technician","role-support-coordinator"]
+  },
+  {
+    "team-id": "team-client-support",
+    "name": "Client Support Team",
+    "departmentId": "dept-it-support",
+    "roles": ["role-client-support-lead","role-client-support-specialist","role-onsite-technician", "role-technical-trainer"]
+  },
+  {
+    "team-id": "team-network-security",
+    "name": "Network Security Team",
+    "departmentId": "dept-it-security",
+    "roles": ["role-network-security-lead", "role-security-engineer", "role-vulnerability-analyst", "role-network-monitoring-specialist"]
+  },
+  {
+    "team-id": "team-it-compliance",
+    "name": "IT Compliance Team",
+    "departmentId": "dept-it-security",
+    "roles": ["role-it-compliance-lead", "role-compliance-auditor", "role-policy-specialist", "role-security-documentation-specialist"]
+  },
+  {
+    "team-id": "team-cyber-defense",
+    "name": "Cyber Defense Team",
+    "departmentId": "dept-it-security",
+    "roles": ["role-cyber-defense-lead", "role-security-analyst","role-threat-hunter","role-security-architect"]
+  },
+  {
+    "team-id": "team-masonry",
+    "name": "Masonry Team",
+    "departmentId": "dept-construction",
+    "roles": ["role-masonry-lead","role-brick-mason","role-stone-mason","role-masonry-apprentice"]
+  },
+  {
+    "team-id": "team-carpentry",
+    "name": "Carpentry Team",
+    "departmentId": "dept-construction",
+    "roles": ["role-carpentry-lead","role-finish-carpenter","role-framing-carpenter","role-carpentry-apprentice"]
+  },
+  {
+    "team-id": "team-concrete",
+    "name": "Concrete Works Team",
+    "departmentId": "dept-construction",
+    "roles": ["role-concrete-lead","role-concrete-finisher","role-form-setter","role-concrete-technician"]
+  },
+  {
+    "team-id": "team-site-planning",
+    "name": "Site Planning Team",
+    "departmentId": "dept-site-management",
+    "roles": ["role-site-planning-lead","role-site-planner","role-cad-technician","role-scheduling-specialist"]
+  },
+  {
+    "team-id": "team-quality-supervision",
+    "name": "Quality Supervision Team",
+    "departmentId": "dept-site-management",
+    "roles": ["role-quality-supervision-lead","role-quality-inspector","role-safety-officer","role-documentation-specialist"]
+  },
+  {
+    "team-id": "team-site-logistics",
+    "name": "Site Logistics Team",
+    "departmentId": "dept-site-management",
+    "roles": ["role-site-logistics-lead","role-material-coordinator","role-equipment-coordinator","role-site-traffic-controller"]
+  },
+  {
+    "team-id": "team-sales-admin",
+    "name": "Sales Administration Team",
+    "departmentId": "dept-sales-internal",
+    "roles": ["role-sales-admin-lead","role-sales-coordinator","role-sales-data-analyst","role-sales-administrator"]
+  },
+  {
+    "team-id": "team-order-processing",
+    "name": "Order Processing Team",
+    "departmentId": "dept-sales-internal",
+    "roles": ["role-order-processing-lead","role-order-processor","role-order-verification-specialist","role-customer-coordinator"]
+  },
+  {
+    "team-id": "team-regional-sales",
+    "name": "Regional Sales Team",
+    "departmentId": "dept-sales-field",
+    "roles": ["role-regional-sales-lead","role-sales-representative","role-business-developer","role-sales-consultant"]
+  },
+  {
+    "team-id": "team-product-promotion",
+    "name": "Product Promotion Team",
+    "departmentId": "dept-sales-field",
+    "roles": ["role-product-promotion-lead","role-product-specialist","role-trade-show-coordinator","role-promotional-content-creator"]
+  },
+  {
+    "team-id": "team-key-account-east",
+    "name": "Key Account Team East",
+    "departmentId": "dept-sales-key",
+    "roles": ["role-key-account-east-lead","role-senior-account-executive","role-account-manager","role-client-success-manager"]
+  },
+  {
+    "team-id": "team-key-account-west",
+    "name": "Key Account Team West",
+    "departmentId": "dept-sales-key",
+    "roles": ["role-key-account-west-lead","role-senior-account-executive","role-account-manager","role-client-success-manager"]
+  },
+  {
+    "team-id": "team-customer-service",
+    "name": "Customer Service Team",
+    "departmentId": "dept-customer",
+    "roles": ["role-customer-service-lead","role-customer-service-rep","role-service-quality-analyst","role-customer-experience-specialist"]
+  },
+  {
+    "team-id": "team-client-complaints",
+    "name": "Client Complaints Team",
+    "departmentId": "dept-customer",
+    "roles": ["role-client-complaints-lead","role-complaint-handler","role-escalation-specialist","role-client-retention-specialist"]
+  },
+  {
+    "team-id": "team-material-prep",
+    "name": "Sales Material Preparation Team",
+    "departmentId": "dept-sales-support",
+    "roles": ["role-material-prep-lead","role-content-creator","role-graphic-designer","role-digital-asset-manager"]
+  },
+  {
+    "team-id": "team-pre-sales",
+    "name": "Pre-Sales Support Team",
+    "departmentId": "dept-sales-support",
+    "roles": ["role-pre-sales-lead","role-solution-consultant","role-technical-sales-specialist","role-sales-engineer"]
+  },
+  {
+    "team-id": "team-bid-management",
+    "name": "Bid Management Team",
+    "departmentId": "dept-sales-support",
+    "roles": ["role-bid-management-lead","role-bid-coordinator","role-pricing-specialist","role-proposal-writer"]
   }
 ]
