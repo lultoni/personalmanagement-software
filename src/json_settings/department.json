@@ -7,18 +7,19 @@
   {
     "id": "dept-compliance",
     "name": "Recht & Compliance",
-    "subdepartments": []
+    "subdepartments": ["team-legal-compliance", "team-data-protection", "team-regulatory-audit"]
   },
   {
     "id": "dept-strategy",
     "name": "Unternehmensstrategie",
-    "subdepartments": []
+    "subdepartments": ["team-corporate-strategy", "team-market-analysis", "team-innovation"]
   },
   {
     "id": "dept-internal-audit",
     "name": "Interne Revision",
-    "subdepartments": []
+    "subdepartments": ["team-financial-audit", "team-process-audit", "team-risk-assessment"]
   },
+
   {
     "id": "dept-finance",
     "name": "Finanzen",
@@ -27,18 +28,19 @@
   {
     "id": "dept-fibu",
     "name": "Finanzbuchhaltung",
-    "subdepartments": []
+    "subdepartments": ["team-general-ledger", "team-accounts-payable", "team-accounts-receivable"]
   },
   {
     "id": "dept-logistics",
     "name": "Logistik & Geräteverwaltung",
-    "subdepartments": []
+    "subdepartments": ["team-internal-logistics", "team-equipment-dispatch", "team-logistics-planning"]
   },
   {
     "id": "dept-controlling",
     "name": "Controlling",
-    "subdepartments": []
+    "subdepartments": ["team-cost-controlling", "team-budget-analysis", "team-kpi-monitoring"]
   },
+
   {
     "id": "dept-hr",
     "name": "Human Resources",
@@ -47,48 +49,50 @@
   {
     "id": "dept-hr-recruiting",
     "name": "Recruiting",
-    "subdepartments": []
+    "subdepartments": ["team-candidate-sourcing", "team-application-management"]
   },
   {
     "id": "dept-hr-development",
     "name": "Personalentwicklung",
-    "subdepartments": []
+    "subdepartments": ["team-training-programs", "team-leadership-development", "team-performance-evaluation"]
   },
   {
     "id": "dept-hr-payroll",
     "name": "Lohnbuchhaltung",
-    "subdepartments": []
+    "subdepartments": ["team-salary-processing", "team-tax-compliance"]
   },
   {
     "id": "dept-hr-admin",
     "name": "HR-Administration",
-    "subdepartments": []
+    "subdepartments": ["team-hr-documentation", "team-onboarding", "team-employee-data"]
   },
+
   {
     "id": "dept-it",
     "name": "IT",
     "subdepartments": ["dept-it-infrastructure", "dept-it-dev", "dept-it-support", "dept-it-security"]
   },
   {
-    "id": "dept-it-infra",
+    "id": "dept-it-infrastructure",
     "name": "Infrastruktur",
-    "subdepartments": []
+    "subdepartments": ["team-network-admin", "team-server-ops", "team-cloud-services"]
   },
   {
     "id": "dept-it-dev",
     "name": "Softwareentwicklung",
-    "subdepartments": []
+    "subdepartments": ["team-frontend", "team-backend", "team-fullstack", "team-devops"]
   },
   {
     "id": "dept-it-support",
-    "name": "Softwareentwicklung",
-    "subdepartments": []
+    "name": "IT Support",
+    "subdepartments": ["team-helpdesk", "team-client-support"]
   },
   {
     "id": "dept-it-security",
-    "name": "Softwareentwicklung",
-    "subdepartments": []
+    "name": "IT Sicherheit",
+    "subdepartments": ["team-network-security", "team-it-compliance", "team-cyber-defense"]
   },
+
   {
     "id": "dept-operations",
     "name": "Bau & Außeneinsatz",
@@ -97,13 +101,14 @@
   {
     "id": "dept-construction",
     "name": "Bauarbeiter",
-    "subdepartments": []
+    "subdepartments": ["team-masonry", "team-carpentry", "team-concrete"]
   },
   {
     "id": "dept-site-management",
     "name": "Baustellenleitung",
-    "subdepartments": []
+    "subdepartments": ["team-site-planning", "team-quality-supervision", "team-site-logistics"]
   },
+
   {
     "id": "dept-sales",
     "name": "Vertrieb",
@@ -112,26 +117,26 @@
   {
     "id": "dept-sales-internal",
     "name": "Innendienst",
-    "subdepartments": []
+    "subdepartments": ["team-sales-admin", "team-order-processing"]
   },
   {
     "id": "dept-sales-field",
     "name": "Außendienst",
-    "subdepartments": []
+    "subdepartments": ["team-regional-sales", "team-product-promotion"]
   },
   {
     "id": "dept-sales-key",
     "name": "Key Account Management",
-    "subdepartments": []
+    "subdepartments": ["team-key-account-east", "team-key-account-west"]
   },
   {
     "id": "dept-customer",
     "name": "Kundendienst",
-    "subdepartments": []
+    "subdepartments": ["team-customer-service", "team-client-complaints"]
   },
   {
     "id": "dept-sales-support",
     "name": "Vertriebsunterstützung",
-    "subdepartments": []
+    "subdepartments": ["team-material-prep", "team-pre-sales"]
   }
 ]
